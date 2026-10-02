@@ -30,13 +30,21 @@ let inventario = [
     [null, null, null, null, null, null, null, null, null],
     [null, null, null, null, null, null, null, null, null]
 ];
-inventario[0][0] = new Item("Piedra", "Bloque de piedra", 32, 64);
-inventario[0][1] = new Item("Antorcha", "Sirve para iluminar", 20, 64);
+inventario[0][0] = new Item("Piedra", "Arma de piedra", 32, 64);
+inventario[0][1] = new Item("Antorcha", "Utensilio para alumbrar", 20, 64);
 inventario[1][3] = new Item("Manzana", "Alimento", 10, 64);
 inventario[2][4] = new Item("Espada de diamante", "Arma", 1, 1);
 inventario[3][2] = new Item("Pico de hierro", "Herramienta", 1, 1);
 
 function mostrarInventario() {
+    for (let fila = 0; fila < inventario.length; fila++) {
+        for (let columna = 0; columna <inventario.length; columna++) {
+            if (inventario[fila][columna] != null) { //evita mostrar info de null?
+                console.log(inventario[fila][columna].mostrarInfo());
+            }
+        }
+
+    }
 }
 
 function mostrarBarraAccesos() {
@@ -46,7 +54,12 @@ function buscarObjeto() {
 }
 
 function anadirObjeto() {
+    //comprobar si ya existe el nombre,si coincide no pedir descripcion,max....
 }
+//se aconseja añadir cantidadHastaElMaximo y añadirCantidadAHuecoVacio
+//buscarItemPorNombre (no solo buscar de case)
+//buscar en x e y para uso despues
+//cuando usuario añada item pasar todo a minus-mayus aunque muestre luego 1a mayuscula
 
 function moverObjeto() {
 }
@@ -62,15 +75,15 @@ function obtenerObjetoMasAbundante() {
 let opcion;
 
 do {
-    opcion = Number(prompt("1. Mostrar inventario completo\n" +
-        "2. Mostrar barra accesos rápidos\n" +
-        "3. Buscar objeto\n" +
-        "4. Añadir objeto al inventario\n" +
-        "5. Mover objeto\n" +
-        "6. Eliminar objeto\n" +
-        "7. Mostrar huecos libres\n" +
-        "8. Mostrar el objeto más abundante\n" +
-        "0. Salir\n\n" +
+    opcion = Number(prompt("1 Mostrar inventario completo.\n" +
+        "2 Mostrar barra accesos rápidos\n" +
+        "3 Buscar objeto\n" +
+        "4 Añadir objeto al inventario\n" +
+        "5Mover objeto\n" +
+        "6 Eliminar objeto\n" +
+        "7 Mostrar huecos libres\n" +
+        "8 Mostrar el objeto más abundante\n" +
+        "0 Salir\n" +
         "Introduce una opción:"
     ));
 
