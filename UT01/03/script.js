@@ -55,3 +55,6 @@ for(let i=0; i< matriz.length;i++){
     console.log("["+ matriz[i].join(' | ')+"]");
  }
 */
+//declaracion de array:
+let myArray=[];
+let myArray2=new Array(numHuecos)
