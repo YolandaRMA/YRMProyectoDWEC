@@ -19,10 +19,21 @@ class Item {
     get cantidad() {
         return this._cantidad;
     }
-
+    /*
+    plantillas (template literals)
+    " "  texto normal, NO interpreta ${}
+    ' '  texto normal, NO interpreta ${}
+    ` `  permite usar ${variable}
+    */
     mostrarInformacion() {
-        return "${this.nombre} - ${this.descripcion} - Cantidad: ${this.cantidad}/${this.maxStack}";
+        return `${this.nombre} - ${this.descripcion} - Cantidad: ${this.cantidad}/${this.maxStack}`;
     }
+    /*
+    mostrarInformacion() {
+    return this.nombre + " - " + this.descripcion +
+           " - Cantidad: " + this.cantidad + "/" + this.maxStack;
+    }
+    */
 }
 
 
@@ -41,7 +52,7 @@ function mostrarInventario() {
         for (let columna = 0; columna < inventario[fila].length; columna++) {
 
             if (inventario[fila][columna] == null) {
-                (`Posición [${fila}][${columna}]: VACÍO`)
+                console.log(`Posición [${fila}][${columna}]: VACÍO`);
             } else {
                 console.log(inventario[fila][columna].mostrarInformacion());
             }
@@ -62,6 +73,15 @@ const mostrarInventario = () => {
 };
 */
 function mostrarBarraAccesos() {
+    inventario[0].forEach((item, columna) => {
+
+        if (item == null) {
+            console.log(`Posición [0][${columna}]: VACÍO`);
+        } else {
+            console.log(`Posición [0][${columna}]: ${item.mostrarInformacion()}`);
+        }
+
+    });
 }
 
 const buscarObjeto = () => {
