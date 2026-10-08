@@ -19,11 +19,23 @@ class Item {
     get cantidad() {
         return this._cantidad;
     }
-
-    mostrarInfo() {
-        return "${this.nombre} - ${this.descripcion} - Cantidad: ${this.cantidad}/${this.maxStack}";
+    /*
+    plantillas (template literals)
+    " "  texto normal, NO interpreta ${}
+    ' '  texto normal, NO interpreta ${}
+    ` `  permite usar ${variable}
+    */
+    mostrarInformacion() {
+        return `${this.nombre} - ${this.descripcion} - Cantidad: ${this.cantidad}/${this.maxStack}`;
     }
+    /*
+    mostrarInformacion() {
+    return this.nombre + " - " + this.descripcion +
+           " - Cantidad: " + this.cantidad + "/" + this.maxStack;
+    }
+    */
 }
+<<<<<<< HEAD
 // let inventario =new Array(9).fill().map(x=> new)
 let inventario = [
     [null, null, null, null, null, null, null, null, null],
@@ -31,6 +43,14 @@ let inventario = [
     [null, null, null, null, null, null, null, null, null],
     [null, null, null, null, null, null, null, null, null]
 ];
+=======
+
+
+//array(4) crea un array de 4 posiciones,map recorre las posiciones y crea algo nuevo para cada una de las 4 posiciones, crea un array de 9 null.
+let inventario = Array(4).fill(null).map(() => Array(9).fill(null));
+
+
+>>>>>>> 39647405e7c80c123fb88b25acf10f7a4098136c
 inventario[0][0] = new Item("Piedra", "Arma de piedra", 32, 64);
 inventario[0][1] = new Item("Antorcha", "Utensilio para alumbrar", 20, 64);
 inventario[1][3] = new Item("Manzana", "Alimento", 10, 64);
@@ -39,20 +59,73 @@ inventario[3][2] = new Item("Pico de hierro", "Herramienta", 1, 1);
 
 function mostrarInventario() {
     for (let fila = 0; fila < inventario.length; fila++) {
-        for (let columna = 0; columna <inventario.length; columna++) {
-            if (inventario[fila][columna] != null) { //evita mostrar info de null?
-                console.log(inventario[fila][columna].mostrarInfo());
+        for (let columna = 0; columna < inventario[fila].length; columna++) {
+
+            if (inventario[fila][columna] == null) {
+                console.log(`Posición [${fila}][${columna}]: VACÍO`);
+            } else {
+                console.log(inventario[fila][columna].mostrarInformacion());
             }
         }
-
     }
 }
-
+/*
+const mostrarInventario = () => {
+    for (let fila = 0; fila < inventario.length; fila++) {
+        for (let columna = 0; columna < inventario[fila].length; columna++) {
+            if (inventario[fila][columna] == null) {
+                console.log(`Posición [${fila}][${columna}]: VACÍO`);
+            } else {
+                console.log(`Posición [${fila}][${columna}]: ${inventario[fila][columna].mostrarInformacion()}`);
+            }
+        }
+    }
+};
+*/
 function mostrarBarraAccesos() {
+    inventario[0].forEach((item, columna) => {
+
+        if (item == null) {
+            console.log(`Posición [0][${columna}]: VACÍO`);
+        } else {
+            console.log(`Posición [0][${columna}]: ${item.mostrarInformacion()}`);
+        }
+
+    });
 }
 
-function buscarObjeto() {
-}
+const buscarObjeto = () => {
+    let nombreBuscado = prompt("Introduce el nombre del objeto:");
+
+    if (nombreBuscado == null || nombreBuscado.trim() == "") {
+        alert("Debes introducir un nombre.");
+        return;
+    }
+
+    nombreBuscado = nombreBuscado.trim().toLowerCase();
+
+    let encontrado = false;
+
+    for (let fila = 0; fila < inventario.length; fila++) {
+        for (let columna = 0; columna < inventario[fila].length; columna++) {
+
+            let item = inventario[fila][columna];
+
+            if (item != null && item.nombre.toLowerCase() == nombreBuscado) {
+                console.log(`Objeto encontrado en [${fila}][${columna}]`);
+                console.log(`Nombre: ${item.nombre}`);
+                console.log(`Descripción: ${item.descripcion}`);
+                console.log(`Cantidad: ${item.cantidad}/${item.maxStack}`);
+
+                encontrado = true;
+            }
+        }
+    }
+
+    if (!encontrado) {
+        console.log("El objeto no existe en el inventario.");
+    }
+};
 
 function anadirObjeto() {
     //comprobar si ya existe el nombre,si coincide no pedir descripcion,max....
