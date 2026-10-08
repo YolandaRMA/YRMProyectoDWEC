@@ -24,6 +24,7 @@ class Item {
         return "${this.nombre} - ${this.descripcion} - Cantidad: ${this.cantidad}/${this.maxStack}";
     }
 }
+// let inventario =new Array(9).fill().map(x=> new)
 let inventario = [
     [null, null, null, null, null, null, null, null, null],
     [null, null, null, null, null, null, null, null, null],
