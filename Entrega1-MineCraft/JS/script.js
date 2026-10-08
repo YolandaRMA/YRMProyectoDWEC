@@ -16,6 +16,7 @@ class Item {
         }
     }
 
+    
     get cantidad() {
         return this._cantidad;
     }
@@ -35,22 +36,22 @@ class Item {
     }
     */
 }
-<<<<<<< HEAD
+
 // let inventario =new Array(9).fill().map(x=> new)
-let inventario = [
-    [null, null, null, null, null, null, null, null, null],
-    [null, null, null, null, null, null, null, null, null],
-    [null, null, null, null, null, null, null, null, null],
-    [null, null, null, null, null, null, null, null, null]
-];
-=======
+// let inventario2 = [
+//     [null, null, null, null, null, null, null, null, null],
+//     [null, null, null, null, null, null, null, null, null],
+//     [null, null, null, null, null, null, null, null, null],
+//     [null, null, null, null, null, null, null, null, null]
+// ];
+
 
 
 //array(4) crea un array de 4 posiciones,map recorre las posiciones y crea algo nuevo para cada una de las 4 posiciones, crea un array de 9 null.
 let inventario = Array(4).fill(null).map(() => Array(9).fill(null));
 
 
->>>>>>> 39647405e7c80c123fb88b25acf10f7a4098136c
+
 inventario[0][0] = new Item("Piedra", "Arma de piedra", 32, 64);
 inventario[0][1] = new Item("Antorcha", "Utensilio para alumbrar", 20, 64);
 inventario[1][3] = new Item("Manzana", "Alimento", 10, 64);
