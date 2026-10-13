@@ -507,7 +507,6 @@ function contarHuecosLibres() {
 
 
 //suma las cantidades de todos los stacks de cada objeto aunque esté repartido en varios huecos.
-
 function obtenerObjetoMasAbundante() {
 
     //total de unidades de cada objeto.
@@ -539,8 +538,8 @@ function obtenerObjetoMasAbundante() {
     // Si todos los huecos están vacíos, no hay ningún objeto que contar.
     let nombres = Object.keys(cantidadesPorObjeto);
     //Object.keys devuelve un array con los nombres de las propiedades propias enumerables de un objeto.
-//guardamos las cantidades en un objeto, usando el nombre de cada objeto como propiedad.
-//se obtiene una lista con los nombres guardados y poder recorrerlos para averiguar cual tiene +unidades.
+    //guardamos las cantidades en un objeto, usando el nombre de cada objeto como propiedad.
+    //se obtiene una lista con los nombres guardados y poder recorrerlos para averiguar cual tiene +unidades.
     if (nombres.length == 0) {
         console.log("El inventario está vacío.");
         return;
@@ -568,7 +567,6 @@ function obtenerObjetoMasAbundante() {
         }
     }
 }
-
 
 // switch para opciones de la aplicacion
 let opcion;
