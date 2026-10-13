@@ -38,3 +38,19 @@ if (isNaN(numero1) || isNaN(numero2)) {
 
     alert("Resultado: " + resultado);
 }
+
+
+/*
+Una arrow se puede simplificar si solo tiene una línea de código dentro de las llaves. 
+Se eliminan las llaves y la palabra
+*/
+function sumarNumerosNormal(num1, num2) {
+     return num1 + num2;
+     }
+
+const sumarNumerosArrow = (num1, num2) => {
+    return num1 + num2;
+}
+
+
+const sumarNumerosArrowSimplificada = (num1, num2) => num1 + num2;

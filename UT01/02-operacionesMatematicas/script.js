@@ -16,11 +16,15 @@ function dividir(numero1, numero2) {
 }
 
 let opcion = prompt("Elija una opción:\n1.Sumar\n2.Restar\n3.Multiplicar\n4.Dividir");
-//Number() convierte anumero,prompt() devuelve texto.
+//Number() convierte a numero,prompt() devuelve texto.
 let numero1 = Number(prompt("Introduzca el primer número:"));
 let numero2 = Number(prompt("Introduzca el segundo número:"));
+//isNaN is Not a Number devuelve true o false
 if (isNaN(numero1) || isNaN(numero2)) {
     alert("Debes introducir números válidos.");
+} else if (opcion === "4" && numero2 === 0) {
+    // No se puede dividir entre cero
+    alert("No se puede dividir entre cero.");
 } else {
     let resultado;
     switch (opcion) {
