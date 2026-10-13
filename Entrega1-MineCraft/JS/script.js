@@ -321,27 +321,22 @@ function anadirObjeto() {
 //cuando usuario añada item pasar todo a minus-mayus aunque muestre luego 1a mayuscula
 
 /*
- * Mueve un objeto de una posición a otra.
- * Si el destino está vacío, traslado el objeto completo.
- * Si hay otro stack del mismo objeto, intento combinar las cantidades
- * sin superar el máximo permitido.
+ Mueve un objeto de una posición a otra.
+ Si destino vacío, objeto completo.
+Si hay otro stack del mismo objeto, intento combinar las cantidades sin superar el máximo permitido.
  */
 function moverObjeto() {
 
     let filaOrigen = prompt("Introduce la fila de origen (0-3):");
-
     if (filaOrigen == null || filaOrigen.trim() == "") {//trimp para eliminar espacios en blancoal principio y final
         alert("Operación cancelada.");
         return;
     }
-
     let columnaOrigen = prompt("Introduce la columna de origen (0-8):");
-
     if (columnaOrigen == null || columnaOrigen.trim() == "") {
         alert("Operación cancelada.");
         return;
     }
-
     let filaDestino = prompt("Introduce la fila de destino (0-3):");
 
     if (filaDestino == null || filaDestino.trim() == "") {
@@ -373,7 +368,7 @@ function moverObjeto() {
         return;
     }
 
-    // Compruebo que las posiciones existan en la matriz.
+    //que posiciones existan en la matriz.
     if (
         filaOrigen < 0 || filaOrigen >= inventario.length ||
         filaDestino < 0 || filaDestino >= inventario.length ||
@@ -384,22 +379,21 @@ function moverObjeto() {
         return;
     }
 
-    // No tiene sentido mover un objeto a la misma posición.
+    // No a  misma posición.
     if (filaOrigen == filaDestino && columnaOrigen == columnaDestino) {
         alert("El origen y el destino son la misma posición.");
         return;
     }
-
     let itemOrigen = inventario[filaOrigen][columnaOrigen];
     let itemDestino = inventario[filaDestino][columnaDestino];
 
-    // No puedo mover un objeto desde un hueco vacío.
+    // No puede mover objeto desde hueco vacío.
     if (itemOrigen == null) {
         alert("La posición de origen está vacía.");
         return;
     }
 
-    // Si el destino está vacío, muevo el objeto completo.
+    // Si el destino está vacío muevoobjeto completo.
     if (itemDestino == null) {
         inventario[filaDestino][columnaDestino] = itemOrigen;
         inventario[filaOrigen][columnaOrigen] = null;
@@ -416,13 +410,13 @@ function moverObjeto() {
 
         let espacioDisponible = cantidadHastaElMaximo(itemDestino);
 
-        // Si el destino está completo, no puedo añadir más unidades.
+        // Si el destino está completo, no puedo añadir más 
         if (espacioDisponible == 0) {
             alert("El stack de destino está completo.");
             return;
         }
 
-        // Muevo solo las unidades que caben en el destino.
+        // Muevo solo las unidades que caben
         let cantidadAMover = Math.min(
             itemOrigen.cantidad,
             espacioDisponible
@@ -431,7 +425,7 @@ function moverObjeto() {
         itemDestino.cantidad = itemDestino.cantidad + cantidadAMover;
         itemOrigen.cantidad = itemOrigen.cantidad - cantidadAMover;
 
-        // Si el stack de origen se queda vacío, libero ese hueco.
+        // Si el stack de origen se queda vacío ese hueco.
         if (itemOrigen.cantidad == 0) {
             inventario[filaOrigen][columnaOrigen] = null;
         }
@@ -439,7 +433,7 @@ function moverObjeto() {
         alert("Se han combinado las cantidades correctamente.");
 
     } else {
-        // No mezclo objetos diferentes.
+        // No objetos diferentes.
         alert("No puedes combinar objetos de distinto tipo.");
     }
 }
@@ -472,7 +466,7 @@ function eliminarObjeto() {
         return;
     }
     let item = inventario[fila][columna];
-    // No puedo eliminar un objeto de un hueco vacío.
+    // No eliminar de  hueco vacío.
     if (item == null) {
         alert("El hueco seleccionado está vacío.");
         return;
@@ -513,7 +507,6 @@ function contarHuecosLibres() {
 
 
 //suma las cantidades de todos los stacks de cada objeto aunque esté repartido en varios huecos.
-
 function obtenerObjetoMasAbundante() {
 
     //total de unidades de cada objeto.
@@ -545,8 +538,8 @@ function obtenerObjetoMasAbundante() {
     // Si todos los huecos están vacíos, no hay ningún objeto que contar.
     let nombres = Object.keys(cantidadesPorObjeto);
     //Object.keys devuelve un array con los nombres de las propiedades propias enumerables de un objeto.
-//guardamos las cantidades en un objeto, usando el nombre de cada objeto como propiedad.
-//se obtiene una lista con los nombres guardados y poder recorrerlos para averiguar cual tiene +unidades.
+    //guardamos las cantidades en un objeto, usando el nombre de cada objeto como propiedad.
+    //se obtiene una lista con los nombres guardados y poder recorrerlos para averiguar cual tiene +unidades.
     if (nombres.length == 0) {
         console.log("El inventario está vacío.");
         return;
@@ -574,7 +567,6 @@ function obtenerObjetoMasAbundante() {
         }
     }
 }
-
 
 // switch para opciones de la aplicacion
 let opcion;
