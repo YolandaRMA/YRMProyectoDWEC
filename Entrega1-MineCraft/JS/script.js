@@ -555,7 +555,7 @@ function obtenerObjetoMasAbundante() {
         let cantidad = pareja[1];
         */
         if (cantidad == maxima) {
-            console.log(nombre + ": " + cantidad + " unidades");
+            console.log("el/los objetos mas abundantes son: "+nombre + ": " + cantidad + " unidades");
         }
     }
 }
