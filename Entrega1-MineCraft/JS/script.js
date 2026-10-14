@@ -506,67 +506,61 @@ function contarHuecosLibres() {
 
 
 
-//suma las cantidades de todos los stacks de cada objeto aunque esté repartido en varios huecos.
+//suma las cantidades de todos los stacks de cada objeto aunque esté repartido en varios huecos
+//contar las unidades, encontrar la cantidad mayor y mostrar el resultado
+
 function obtenerObjetoMasAbundante() {
-
-    //total de unidades de cada objeto.
-    let cantidadesPorObjeto = {};
-
+    //  Map para guardar el nombre del objeto y su cantidad
+    let cantidades = new Map();
     for (let fila = 0; fila < inventario.length; fila++) {
         for (let columna = 0; columna < inventario[fila].length; columna++) {
+            // Guarda obj que hay en esta posicion
             let item = inventario[fila][columna];
-            //ignora huecos vacios
+
+            // cuenta posiciones que no están vacias.
             if (item != null) {
-
-                //minúsculas para agrupar los stacks iguales.
-                let nombreClave = item.nombre.toLowerCase();
-
-                // Si es la primera vez que aparece contador a cero.
-                if (cantidadesPorObjeto[nombreClave] == undefined) {
-                    cantidadesPorObjeto[nombreClave] = {
-                        nombre: item.nombre,
-                        cantidadTotal: 0
-                    };
+                //nombre a minúsculas para agrupar objetos iguales.
+                let nombre = item.nombre.toLowerCase();
+                // Si el objeto ya en Map suma su cantidad.
+                if (cantidades.has(nombre)) {//has comprueba si obj ya guardado
+                    cantidades.set(nombre, cantidades.get(nombre) + item.cantidad);
+                } else {
+                    // Si no existe lo guarda con su cantidad 
+                    cantidades.set(nombre, item.cantidad);
                 }
-
-                // Sumo al total del objeto.
-                cantidadesPorObjeto[nombreClave].cantidadTotal += item.cantidad;
             }
         }
     }
-
-    // Si todos los huecos están vacíos, no hay ningún objeto que contar.
-    let nombres = Object.keys(cantidadesPorObjeto);
-    //Object.keys devuelve un array con los nombres de las propiedades propias enumerables de un objeto.
-    //guardamos las cantidades en un objeto, usando el nombre de cada objeto como propiedad.
-    //se obtiene una lista con los nombres guardados y poder recorrerlos para averiguar cual tiene +unidades.
-    if (nombres.length == 0) {
+    // Si Map vacío no contar.
+    if (cantidades.size == 0) {
         console.log("El inventario está vacío.");
         return;
     }
 
-    let cantidadMaxima = 0;
+    // inicializa a cero.
+    let maxima = 0;
 
-    //cantidad total +alta
-    for (let nombre of nombres) {
-        if (cantidadesPorObjeto[nombre].cantidadTotal > cantidadMaxima) {
-            cantidadMaxima = cantidadesPorObjeto[nombre].cantidadTotal;
+    // Recorre cantidades para encontrar la más alta.
+    for (let cantidad of cantidades.values()) {
+        if (cantidad > maxima) {
+            maxima = cantidad;
         }
     }
 
-    console.log("Objeto más abundante:");
-
-    // Muestra objetos que empatan en la cantidad max.
-    for (let nombre of nombres) {
-        if (cantidadesPorObjeto[nombre].cantidadTotal == cantidadMaxima) {
-            console.log(
-                cantidadesPorObjeto[nombre].nombre +
-                ": " + cantidadesPorObjeto[nombre].cantidadTotal +
-                " unidades"
-            );
+    // Muestro los objetos que tienen la cantidad máxima.
+    for (let [nombre, cantidad] of cantidades) { //corchetes permiten hacer separación directamente
+        /*
+        for (let pareja of cantidades) {
+        let nombre = pareja[0];
+        let cantidad = pareja[1];
+        */
+        if (cantidad == maxima) {
+            console.log(nombre + ": " + cantidad + " unidades");
         }
     }
 }
+
+//----------------------------------------------------------------------------------------
 
 // switch para opciones de la aplicacion
 let opcion;
