@@ -14,11 +14,11 @@ if (edad >= 18) {
     //mayorEdad = true;//mayorEdad es constante no puede cambiar de valor
 }
 
-console.log("Usuario: " + nombre.toUppercase());
+console.log("Usuario: " + nombre.toUppercase());//mal escrito
 
 let numeros = [10, 20, 30, 40];
 
-for (let i = 0; i <= numeros.length; i++) {
+for (let i = 0; i <= numeros.length; i++) {//el bucle se pasa una posicion NO MENOR O =, MENOR
     console.log(numeros[i]);
 }
 
@@ -40,6 +40,6 @@ if (precio === 19.99) {// solo un =
     console.log("Precio correcto");
 }
 
-const aleatorio = Math.floor(Math.random * 10) + 1;//no puede ser const un numero que va a cambiar cada vez que ejecute console log debido a random
+const aleatorio = Math.floor(Math.random * 10) + 1;//nMATH RANDOM MAL ESCRITO
 
 console.log("Número aleatorio: " + aleatorio);

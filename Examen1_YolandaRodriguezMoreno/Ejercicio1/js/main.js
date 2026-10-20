@@ -97,6 +97,7 @@ function showFinishedBooks() {
     Modifica el menú y el switch para añadir una nueva opción que permita mostrar los libros terminados.
     En el archivo library.js está un array de libros con el atributo "finished" añadido. Utiliza ese array para mostrar los libros terminados.
     */
+   console.log="";
 }
 
 let continueLoop = true;
