@@ -1,8 +1,12 @@
-//hacer en consola de pagina directamente
+localStorage.setItem("practica_nombre","yoli");
+localStorage.setItem("practica_monedas","100");
+console.log(typeof(localStorage.getItem("practica_nombre"))+":"+ localStorage.getItem("practica_nombre"));
+console.log(typeof(localStorage.getItem("practica_monedas"))+":"+localStorage.getItem("practica_monedas"));
 
-// console.log(history.length);//tamaño del historial
-// history.back(); //vuelve atras 1 posicion
-// history.forward(); //vuelve
-// history.go(-2);//posiciones
-// history.go(2);
+let monedas=Number(localStorage.getItem("practica_monedas"));
+monedas+=10;
+console.log(typeof(localStorage.getItem("practica_monedas"))+":"+localStorage.getItem("practica_monedas"));
 
+
+
+ 
