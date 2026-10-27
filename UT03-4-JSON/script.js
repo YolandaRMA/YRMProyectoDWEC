@@ -11,6 +11,8 @@ class Player{
 }
 let perfil= new Player("",1,false)
 
+
+// .then espera a que fetch termine
 fetch("./data/characters.json")
   // 1. Convierte la respuesta a un objeto de JS
   .then(response => response.json())
