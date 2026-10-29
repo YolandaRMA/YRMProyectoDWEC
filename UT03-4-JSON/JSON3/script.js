@@ -26,6 +26,7 @@ try {
 
   // Se muestra vida y zona usando rutas completas
   console.log("Vida inicial: " + personaje.estadisticas.vida);
+  console.log("zona : " + personaje.posicion.zona);
   console.log("coordenada x inicial: " + personaje.posicion.x);
 
   // Se resta 20 vida,suma 5x y añade escudo a inventario

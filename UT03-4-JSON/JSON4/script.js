@@ -1,49 +1,54 @@
-//  Crea perfil.json con los datos de la derecha. Usa comillas dobles y respeta los tipos de cada valor. 2. Copia su contenido a una cadena de JavaScript y conviértela con JSON.parse(). Muestra el nombre y el nivel.
-//   3. Comprueba con typeof el tipo de nivel y activo. Aumenta el nivel en 1.
-//    4. Convierte el objeto modificado con JSON.stringify(). C
-//    ompara el texto obtenido con el JSON inicial.
-class Player{
-    constructor(nombre,nivel,clase){
-        this.nombre=nombre;
-        this.nivel=nivel;
-        this.clase=clase;
+
+//JSON 4
+function sell(id, data){
+  data.productos.forEach(product => {
+    if(product.id == id){
+      if(product.stock > 0){
+        product.stock--;
+        console.log("Venta realizada de producto: " + product.nombre);
+      }
+      else{
+        console.log("No hay stock suficiente");
+      }
     }
+  });
 }
-let perfil= new Player("",1,false)
 
+function calculateStockValue(data){
+  let stockValue = 0;
+  data.productos.forEach(product => {
+    stockValue += (product.precio * product.stock);
+  });
+  console.log("Valor de existencias: " + stockValue);
+}
 
-// .then espera a que fetch termine
-fetch("./data/characters.json")
-  // 1. Convierte la respuesta a un objeto de JS
-  .then(response => response.json())
-
-  // 2. Bloque OPCIONAL para validar los datos
-  .then(data => {
-    if (!data || typeof data.nivel !== 'number') {
-      throw new Error("Validación fallida: 'nivel' no existe o no es un número.");
+function showStock(data){
+  console.log("Producto\t|\tStock");
+  data.productos.forEach(product => {
+    if(product.stock > 0){
+      console.log(product.nombre + " \t\t|\t" + product.stock)
     }
-    return data; // Si todo está bien, pasamos los datos al siguiente .then()
-  })
+  });
+}
 
-  // 3. Bloque para asignar y usar los datos
-  .then(data => {
-   perfil = data;
-    localStorage.setItem("characters", JSON.stringify(perfil));
-    let nivelSuma = Number(perfil.nivel) + 1;
-    // Mostrar nombre y nivel aquí mismo
-    console.log('Nombre: ' + perfil.nombre + '\nNivel: ' + perfil.nivel+ '\nNivelSumando: ' + nivelSuma);
-    
-  })
+async function getData(){
+  const DATA = await fetch("./Data/tienda.json");
+  return DATA_TEXT = await DATA.json();
+}
 
-  // Captura tanto errores de red, de conversión a JSON, como de validación
-  .catch(error => console.error('Error en el proceso:', error.message));
+async function main(){
+  let data = await getData();
+  showStock(data);
 
+  calculateStockValue(data);
+  sell(2, data);
+  calculateStockValue(data);
 
-// let jsonData=JSON.stringify(perfil);
-// localStorage.setItem("characters",jsonData);
+  localStorage.setItem("practica_tienda", JSON.stringify(data));
 
- //let datosJson=localStorage.setItem("characters",JSON.stringify(perfil)); 
+  let newData = JSON.parse(localStorage.getItem("practica_tienda"));
 
+  showStock(newData);
+}
 
-//   const perfilText = localStorage.getItem("perfil");
-//   console.log(typeof texto);
+main();
