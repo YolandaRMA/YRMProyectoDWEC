@@ -1,8 +1,18 @@
 import http from "node:http";
-import { readFile }fs from "node:fs/promises";
+import { readFile , writeFile} from "node:fs/promises";
 
-//se guardan los distintos recursos necesarios
-const recursos = {
+const INVENTARY_FYLE_RUTE = new URL("./inventary.json" , import.meta.url);
+const INVENTARY= JSON.parse(await readFile(INVENTARY_FYLE_RUTE, "utf-8"));
+
+function resJSON(res, data){
+  res.setHeader("Content-type", "application/json");
+  res.setHeader("Cache-Control", "no-store")
+  res.end(JSON.stringify(data));
+}
+
+
+//se guardan los distintos RESOUCES necesarios
+const RESOUCES = {
   "/": ["index.html", "text/html"],
   "/style.css": ["style.css", "text/css"],
   "/main.js": ["main.js", "text/javascript"]
@@ -10,36 +20,36 @@ const recursos = {
 
 
 const SERVER = http.createServer(async (req, res) => {
-  console.log(req.method, req.url);
-  const RUTE = req.url.split("?")[0];
-  if (RUTE=== "/inventario" && req.method === "GET") {
-    return responderJSON(res, inventario);
+const RUTE = req.url.split("?")[0];
+  if (RUTE=== "/inventary" && req.method === "GET") {
+    return resJSON(res, INVENTARY);
   }
-  if (ruta === "/inventario" && req.method === "POST") {
+  if (RUTE === "/inventary" && req.method === "POST") {
     try {
-      return responderJSON(res, await añadirPiedra());
+      
+      return resJSON(res, await añadirPiedra());
     } catch {
       res.statusCode = 500;
       return res.end("No se pudo guardar el inventario");
     }
   }
-  if (req.method !== "GET" || !Object.hasOwn(recursos, ruta)) {
+  if (req.method !== "GET" || !Object.hasOwn(RESOUCES, RUTE)) {
     res.statusCode = 404;
     return res.end("Recurso no encontrado");
   }
-  const [archivo, tipo] = recursos[ruta];
+  const [ARCHIVE, TYPE] = RESOUCES[RUTE];
 
   try {
-    const url = new URL("./src/" + archivo, import.meta.url);
-    const contenido = await readFile(url);
-    res.setHeader("Content-Type", tipo + "; charset=utf-8");
-    res.end(contenido);
+    const MY_URL = new URL("./src/" +ARCHIVE, import.meta.url);
+    const CONTENT = await readFile(MY_URL);
+    res.setHeader("Content-Type", TYPE + "; charset=utf-8");
+    res.end(CONTENT);
   } catch {
     res.statusCode = 500;
      res.end("Error al leer el archivo");
   }
 });
 
-servidor.listen(3000, "127.0.0.1", () => {
-  console.log("Servidor en http://127.0.0.1:3000/");
+SERVER.listen(3000, "127.0.0.1", () => {
+  console.log("http://127.0.0.1:3000/");
 });
