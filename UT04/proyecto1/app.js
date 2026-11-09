@@ -1,7 +1,8 @@
 import http from "node:http";
-import { readFile , writeFile} from "node:fs/promises";
+import { readFile , writeFile, rename} from "node:fs/promises";
 
 const INVENTARY_FYLE_RUTE = new URL("./inventary.json" , import.meta.url);
+const INVENTARY_TEMP_FYLE_RUTE = new URL("./inventary.tmp" , import.meta.url);
 const INVENTARY= JSON.parse(await readFile(INVENTARY_FYLE_RUTE, "utf-8"));
 
 function resJSON(res, data){

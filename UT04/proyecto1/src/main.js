@@ -1,11 +1,12 @@
-const boton = document.querySelector("#add"); 
-const cantidad = document.querySelector("#quantity"); 
+const BUTTON = document.querySelector("#add"); 
+const QUANTITY = document.querySelector("#quantity"); 
+const STATUS_PROMPT=document.querySelector(#status);
 
 async function updateQuantity(myMethod){
     const RESPONSE=await fetch("/inventary", {method: myMethod})
 }
 
 boton.addEventListener("click", () => { 
-    const total = Number(cantidad.textContent) + 1; 
-    cantidad.textContent = total; 
+    const TOAL = Number(QUANTITY.textContent) + 1; 
+    cantidad.textContent = TOTAL; 
 });
