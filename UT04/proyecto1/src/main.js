@@ -1,6 +1,6 @@
 const BUTTON = document.querySelector("#add"); 
 const QUANTITY = document.querySelector("#quantity"); 
-const STATUS_PROMPT=document.querySelector(#status);
+//const STATUS_PROMPT=document.querySelector(#status);
 
 async function updateQuantity(myMethod){
     const RESPONSE=await fetch("/inventary", {method: myMethod})
